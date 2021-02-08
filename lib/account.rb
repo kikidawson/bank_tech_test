@@ -11,8 +11,16 @@ class Account
 
   def deposit(amount)
     update_balance(amount)
-    @transactions << [date: DATE, credit: amount, debit: 0, balance: @balance]
+    transaction = Transaction.new(date: DATE, credit: amount, debit: 0, balance: @balance)
+    @transactions << transaction
     amount
+  end
+
+  def print_statement
+    puts "date || credit || debit || balance\n"
+    @transactions.each do |transaction|
+      puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}\n"
+    end
   end
 
   private

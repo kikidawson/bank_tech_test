@@ -1,7 +1,7 @@
 require 'transaction'
 
 describe Transaction do
-  subject { described_class.new('08/02/2021', 1000, 0, 1000) }
+  subject { described_class.new(date: '08/02/2021', credit: 1000, debit: 0, balance: 1000) }
 
   it 'allows instances of a class to be created' do
     expect(subject).to be_kind_of Transaction
