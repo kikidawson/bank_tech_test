@@ -13,8 +13,20 @@ describe Account do
     end
 
     it 'returns the amount deposited' do
-      amount = 1000
-      expect(subject.deposit(amount)).to eq amount
+      expect(subject.deposit(1000)).to eq 1000
+    end
+
+    it 'adds transaction to transactions list' do
+      subject.deposit(1000)
+
+      expect(subject.transactions).to include [date: Account::DATE, credit: 1000, debit: 0, balance: 1000]
+    end
+
+    it 'updates account balance' do
+      subject.deposit(1000)
+      subject.deposit(1000)
+
+      expect(subject.transactions).to include [date: Account::DATE, credit: 1000, debit: 0, balance: 2000]
     end
   end
 end
