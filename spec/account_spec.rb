@@ -25,7 +25,7 @@ describe Account do
     it 'adds shows in credit on statement' do
       subject.deposit(1000)
 
-      expect { subject.print_statement }.to output(
+      expect { subject.statement }.to output(
         "date || credit || debit || balance\n#{Transaction::DATE} || 1000.00 ||  || 1000.00\n"
       ).to_stdout
     end
@@ -45,18 +45,18 @@ describe Account do
     it 'amount shows in debit on statement' do
       subject.withdraw(500)
 
-      expect { subject.print_statement }.to output(
+      expect { subject.statement }.to output(
         "date || credit || debit || balance\n#{Transaction::DATE} ||  || 500.00 || -500.00\n"
       ).to_stdout
     end
   end
 
-  describe '#print_statement' do
+  describe '#statement' do
     it 'prints in reverse order' do
       subject.deposit(1000)
       subject.withdraw(500)
 
-      expect { subject.print_statement }.to output(
+      expect { subject.statement }.to output(
         "date || credit || debit || balance\n#{Transaction::DATE} ||  || 500.00 || 500.00\n#{Transaction::DATE} || 1000.00 ||  || 1000.00\n"
       ).to_stdout
     end

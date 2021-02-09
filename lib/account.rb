@@ -25,7 +25,7 @@ class Account
     amount
   end
 
-  def print_statement
+  def statement
     puts "date || credit || debit || balance\n"
     @transactions.reverse_each do |transaction|
       puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}\n"
