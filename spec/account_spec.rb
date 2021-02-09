@@ -31,7 +31,7 @@ describe Account do
       subject.deposit(1000)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 1000\n09/02/2021 || 1000 || 0 || 2000\n"
+        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 2000\n09/02/2021 || 1000 || 0 || 1000\n"
       ).to_stdout
     end
   end
