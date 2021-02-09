@@ -6,10 +6,17 @@
 - Account statement (date, amount, balance) printing.
 - Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
-## How to run code and tests
+## How to run the code
 ```
-$ git clone
-$ irb -r
+$ git clone git@github.com:kikidawson/bank_tech_test.git
+$ cd bank_tech_test
+$ irb -r './lib/account.rb'
+```
+
+### How to run the tests
+```
+$ bundle install
+$ rspec
 ```
 
 ## Planning
