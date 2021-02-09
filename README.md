@@ -19,6 +19,10 @@ $ bundle install
 $ rspec
 ```
 
+## Program in action
+
+![Screenshot of IRB](./images/irb_screenshot.png)
+
 ## Planning
 
 ### How should it work
