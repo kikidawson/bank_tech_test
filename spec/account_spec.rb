@@ -24,6 +24,12 @@ describe Account do
       expect(subject.balance).to eq 1000
     end
 
+    it 'returns the new balance' do
+      subject.deposit(1000)
+
+      expect(subject.deposit(1000)).to eq 2000
+    end
+
     it 'adds shows in credit on statement' do
       subject.deposit(1000)
 
@@ -42,6 +48,12 @@ describe Account do
       subject.withdraw(500)
 
       expect(subject.balance).to eq(-500)
+    end
+
+    it 'returns the new balance' do
+      subject.withdraw(500)
+
+      expect(subject.withdraw(500)).to eq(-1000)
     end
 
     it 'amount shows in debit on statement' do

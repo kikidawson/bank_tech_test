@@ -14,13 +14,13 @@ class Account
   def deposit(amount)
     update_balance(amount)
     save_transaction(credit: amount)
-    amount
+    @balance
   end
 
   def withdraw(amount)
     update_balance(-amount)
     save_transaction(debit: amount)
-    amount
+    @balance
   end
 
   def statement
