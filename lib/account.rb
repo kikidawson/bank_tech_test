@@ -4,7 +4,6 @@ require 'date'
 require_relative 'transaction'
 
 class Account
-
   attr_reader :balance
 
   def initialize(transaction_class = Transaction)
@@ -15,7 +14,7 @@ class Account
 
   def deposit(amount)
     update_balance(amount)
-    save(credit: amount, debit:nil, balance: @balance)
+    save(credit: amount, debit: nil, balance: @balance)
     amount
   end
 

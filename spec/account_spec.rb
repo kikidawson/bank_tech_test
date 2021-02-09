@@ -39,7 +39,7 @@ describe Account do
     it 'minuses withdrawn amount from balance' do
       subject.withdraw(500)
 
-      expect(subject.balance).to eq -500
+      expect(subject.balance).to eq(-500)
     end
 
     it 'amount shows in debit on statement' do

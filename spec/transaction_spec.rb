@@ -14,14 +14,14 @@ describe Transaction do
   end
 
   it 'can return how much is being credited' do
-    expect(subject.credit).to eq "1000.00"
+    expect(subject.credit).to eq '1000.00'
   end
 
   it 'can return how much is being debited' do
-    expect(subject.debit).to eq "0.00"
+    expect(subject.debit).to eq '0.00'
   end
 
   it 'can return the balance' do
-    expect(subject.balance).to eq "1000.00"
+    expect(subject.balance).to eq '1000.00'
   end
 end

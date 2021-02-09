@@ -5,7 +5,7 @@ class Transaction
 
   attr_reader :date, :credit, :debit, :balance
 
-  def initialize(date: DATE, credit:, debit:, balance:)
+  def initialize(credit:, debit:, balance:, date: DATE)
     @date = date
     @credit = convert(credit)
     @debit = convert(debit)
@@ -15,9 +15,6 @@ class Transaction
   private
 
   def convert(value)
-    if value.kind_of? Integer
-      '%.2f' % value
-    end
+    format('%.2f', value) if value.is_a? Integer
   end
-
 end
