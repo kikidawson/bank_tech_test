@@ -7,15 +7,17 @@ class Transaction
 
   def initialize(date: DATE, credit:, debit:, balance:)
     @date = date
-    @credit = '%.2f' % credit
-    @debit = '%.2f' % debit
-    @balance = '%.2f' % balance
+    @credit = convert(credit)
+    @debit = convert(debit)
+    @balance = convert(balance)
   end
 
   private
-  #
-  # def two_decimals(integer)
-  #   '%.2f' % integer
-  # end
+
+  def convert(value)
+    if value.kind_of? Integer
+      '%.2f' % value
+    end
+  end
 
 end
