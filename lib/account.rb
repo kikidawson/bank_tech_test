@@ -3,7 +3,8 @@
 require 'date'
 
 class Account
-  attr_reader :transactions, :balance
+
+  attr_reader :balance
 
   DATE = DateTime.now.strftime('%d/%m/%Y')
 
@@ -15,6 +16,13 @@ class Account
   def deposit(amount)
     update_balance(amount)
     transaction = Transaction.new(date: DATE, credit: amount, debit: 0, balance: @balance)
+    @transactions << transaction
+    amount
+  end
+
+  def withdraw(amount)
+    update_balance(-amount)
+    transaction = Transaction.new(date: DATE, credit: 0, debit: amount, balance: @balance)
     @transactions << transaction
     amount
   end

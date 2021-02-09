@@ -8,3 +8,4 @@ gem 'simplecov', require: false, group: :test
 gem 'simplecov-console', require: false, group: :test
 
 gem 'rubocop', require: false
+gem 'rubocop-rspec', require: false

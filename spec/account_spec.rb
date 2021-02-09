@@ -18,20 +18,52 @@ describe Account do
       expect(subject.deposit(1000)).to eq 1000
     end
 
-    it 'adds transaction to transactions list' do
+    it 'adds deposited amount to balance' do
       subject.deposit(1000)
 
-      expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 1000\n"
-      ).to_stdout
+      expect(subject.balance).to eq 1000
     end
 
-    it 'updates account balance' do
-      subject.deposit(1000)
+    it 'adds shows in credit on statement' do
       subject.deposit(1000)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 2000\n09/02/2021 || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Account::DATE} || 1000 || 0 || 1000\n"
+      ).to_stdout
+    end
+  end
+
+  describe '#withdraw' do
+    it 'accepts the method with one argument' do
+      expect(subject).to respond_to(:withdraw).with(1).argument
+    end
+
+    it 'returns the amount withdrawn' do
+      expect(subject.withdraw(500)).to eq 500
+    end
+
+    it 'minuses withdrawn amount from balance' do
+      subject.withdraw(500)
+
+      expect(subject.balance).to eq -500
+    end
+
+    it 'amount shows in debit on statement' do
+      subject.withdraw(500)
+
+      expect { subject.print_statement }.to output(
+        "date || credit || debit || balance\n#{Account::DATE} || 0 || 500 || -500\n"
+      ).to_stdout
+    end
+  end
+
+  describe '#print_statement' do
+    it 'prints in reverse order' do
+      subject.deposit(1000)
+      subject.deposit(500)
+
+      expect { subject.print_statement }.to output(
+        "date || credit || debit || balance\n#{Account::DATE} || 500 || 0 || 1500\n#{Account::DATE} || 1000 || 0 || 1000\n"
       ).to_stdout
     end
   end
