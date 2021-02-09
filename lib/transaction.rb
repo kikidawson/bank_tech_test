@@ -7,8 +7,15 @@ class Transaction
 
   def initialize(date: DATE, credit:, debit:, balance:)
     @date = date
-    @credit = credit
-    @debit = debit
-    @balance = balance
+    @credit = '%.2f' % credit
+    @debit = '%.2f' % debit
+    @balance = '%.2f' % balance
   end
+
+  private
+  #
+  # def two_decimals(integer)
+  #   '%.2f' % integer
+  # end
+
 end

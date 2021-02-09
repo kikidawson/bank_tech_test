@@ -3,7 +3,9 @@
 require 'account'
 
 describe Account do
-  subject { described_class.new }
+  # subject { described_class.new(transaction_class_double) }
+  # let(:transaction_double) { double :transaction, date: '08/02/2021' }
+  # let(:transaction_class_double) { double :transaction_class, new: transaction_double }
 
   it 'allows instances of a class to be created' do
     expect(subject).to be_kind_of Account
@@ -12,10 +14,6 @@ describe Account do
   describe '#deposit' do
     it 'accepts the method with one argument' do
       expect(subject).to respond_to(:deposit).with(1).argument
-    end
-
-    it 'returns the amount deposited' do
-      expect(subject.deposit(1000)).to eq 1000
     end
 
     it 'adds deposited amount to balance' do
@@ -28,7 +26,7 @@ describe Account do
       subject.deposit(1000)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 1000.00 || 0.00 || 1000.00\n"
       ).to_stdout
     end
   end
@@ -36,10 +34,6 @@ describe Account do
   describe '#withdraw' do
     it 'accepts the method with one argument' do
       expect(subject).to respond_to(:withdraw).with(1).argument
-    end
-
-    it 'returns the amount withdrawn' do
-      expect(subject.withdraw(500)).to eq 500
     end
 
     it 'minuses withdrawn amount from balance' do
@@ -52,7 +46,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} || 0 || 500 || -500\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 0.00 || 500.00 || -500.00\n"
       ).to_stdout
     end
   end
@@ -63,7 +57,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} || 0 || 500 || 500\n#{Transaction::DATE} || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 0.00 || 500.00 || 500.00\n#{Transaction::DATE} || 1000.00 || 0.00 || 1000.00\n"
       ).to_stdout
     end
   end

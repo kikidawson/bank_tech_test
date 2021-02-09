@@ -14,13 +14,13 @@ class Account
 
   def deposit(amount)
     update_balance(amount)
-    save(amount, 0, @balance)
+    save(credit: amount, debit: 0, balance: @balance)
     amount
   end
 
   def withdraw(amount)
     update_balance(-amount)
-    save(0, amount, @balance)
+    save(credit: 0, debit: amount, balance: @balance)
     amount
   end
 
@@ -33,8 +33,8 @@ class Account
 
   private
 
-  def save(credit, debit, balance)
-    @transactions << Transaction.new(credit: credit, debit: debit, balance: balance)
+  def save(credit:, debit:, balance:)
+    @transactions << @transaction_class.new(credit: credit, debit: debit, balance: balance)
   end
 
   def update_balance(amount)
