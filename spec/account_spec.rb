@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'account'
 
 describe Account do
@@ -20,14 +21,18 @@ describe Account do
     it 'adds transaction to transactions list' do
       subject.deposit(1000)
 
-      expect { subject.print_statement }.to output("date || credit || debit || balance\n08/02/2021 || 1000 || 0 || 1000\n").to_stdout
+      expect { subject.print_statement }.to output(
+        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 1000\n"
+      ).to_stdout
     end
 
     it 'updates account balance' do
       subject.deposit(1000)
       subject.deposit(1000)
 
-      expect { subject.print_statement }.to output("date || credit || debit || balance\n08/02/2021 || 1000 || 0 || 1000\n08/02/2021 || 1000 || 0 || 2000\n").to_stdout
+      expect { subject.print_statement }.to output(
+        "date || credit || debit || balance\n09/02/2021 || 1000 || 0 || 1000\n09/02/2021 || 1000 || 0 || 2000\n"
+      ).to_stdout
     end
   end
 end
