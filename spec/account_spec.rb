@@ -60,10 +60,10 @@ describe Account do
   describe '#print_statement' do
     it 'prints in reverse order' do
       subject.deposit(1000)
-      subject.deposit(500)
+      subject.withdraw(500)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Account::DATE} || 500 || 0 || 1500\n#{Account::DATE} || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Account::DATE} || 0 || 500 || 500\n#{Account::DATE} || 1000 || 0 || 1000\n"
       ).to_stdout
     end
   end
