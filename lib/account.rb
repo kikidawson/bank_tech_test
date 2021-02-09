@@ -33,7 +33,8 @@ class Account
   private
 
   def save_transaction(credit: nil, debit: nil)
-    @transactions << @transaction_class.new(credit: credit, debit: debit, balance: @balance)
+    transaction = @transaction_class.new(credit: credit, debit: debit, balance: @balance)
+    @transactions << transaction
   end
 
   def update_balance(amount)
