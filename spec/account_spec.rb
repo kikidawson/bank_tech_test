@@ -28,7 +28,7 @@ describe Account do
       subject.deposit(1000)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Account::DATE} || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 1000 || 0 || 1000\n"
       ).to_stdout
     end
   end
@@ -52,7 +52,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Account::DATE} || 0 || 500 || -500\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 0 || 500 || -500\n"
       ).to_stdout
     end
   end
@@ -63,7 +63,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.print_statement }.to output(
-        "date || credit || debit || balance\n#{Account::DATE} || 0 || 500 || 500\n#{Account::DATE} || 1000 || 0 || 1000\n"
+        "date || credit || debit || balance\n#{Transaction::DATE} || 0 || 500 || 500\n#{Transaction::DATE} || 1000 || 0 || 1000\n"
       ).to_stdout
     end
   end

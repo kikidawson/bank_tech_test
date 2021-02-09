@@ -6,24 +6,21 @@ class Account
 
   attr_reader :balance
 
-  DATE = DateTime.now.strftime('%d/%m/%Y')
-
-  def initialize
+  def initialize(transaction_class = Transaction)
+    @transaction_class = transaction_class
     @transactions = []
     @balance = 0
   end
 
   def deposit(amount)
     update_balance(amount)
-    transaction = Transaction.new(date: DATE, credit: amount, debit: 0, balance: @balance)
-    @transactions << transaction
+    save(amount, 0, @balance)
     amount
   end
 
   def withdraw(amount)
     update_balance(-amount)
-    transaction = Transaction.new(date: DATE, credit: 0, debit: amount, balance: @balance)
-    @transactions << transaction
+    save(0, amount, @balance)
     amount
   end
 
@@ -35,6 +32,10 @@ class Account
   end
 
   private
+
+  def save(credit, debit, balance)
+    @transactions << Transaction.new(credit: credit, debit: debit, balance: balance)
+  end
 
   def update_balance(amount)
     @balance += amount
