@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
 require_relative 'transaction'
 
 class Account
@@ -14,13 +13,13 @@ class Account
 
   def deposit(amount)
     update_balance(amount)
-    save(credit: amount, debit: nil, balance: @balance)
+    save_transaction(credit: amount)
     amount
   end
 
   def withdraw(amount)
     update_balance(-amount)
-    save(credit: nil, debit: amount, balance: @balance)
+    save_transaction(debit: amount)
     amount
   end
 
@@ -33,8 +32,8 @@ class Account
 
   private
 
-  def save(credit:, debit:, balance:)
-    @transactions << @transaction_class.new(credit: credit, debit: debit, balance: balance)
+  def save_transaction(credit: nil, debit: nil)
+    @transactions << @transaction_class.new(credit: credit, debit: debit, balance: @balance)
   end
 
   def update_balance(amount)

@@ -3,9 +3,11 @@
 require 'account'
 
 describe Account do
-  # subject { described_class.new(transaction_class_double) }
-  # let(:transaction_double) { double :transaction, date: '08/02/2021' }
-  # let(:transaction_class_double) { double :transaction_class, new: transaction_double }
+  subject { described_class.new }
+
+  before(:each) do
+    allow(Time).to receive(:now).and_return(DateTime.parse('2021-02-08 16:11:01 +0000'))
+  end
 
   it 'allows instances of a class to be created' do
     expect(subject).to be_kind_of Account
@@ -26,7 +28,7 @@ describe Account do
       subject.deposit(1000)
 
       expect { subject.statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} || 1000.00 ||  || 1000.00\n"
+        "date || credit || debit || balance\n08/02/2021 || 1000.00 ||  || 1000.00\n"
       ).to_stdout
     end
   end
@@ -46,7 +48,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} ||  || 500.00 || -500.00\n"
+        "date || credit || debit || balance\n08/02/2021 ||  || 500.00 || -500.00\n"
       ).to_stdout
     end
   end
@@ -57,7 +59,7 @@ describe Account do
       subject.withdraw(500)
 
       expect { subject.statement }.to output(
-        "date || credit || debit || balance\n#{Transaction::DATE} ||  || 500.00 || 500.00\n#{Transaction::DATE} || 1000.00 ||  || 1000.00\n"
+        "date || credit || debit || balance\n08/02/2021 ||  || 500.00 || 500.00\n08/02/2021 || 1000.00 ||  || 1000.00\n"
       ).to_stdout
     end
   end
