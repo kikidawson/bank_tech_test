@@ -9,10 +9,6 @@ describe Account do
     allow(Time).to receive(:now).and_return(DateTime.parse('2021-02-08 16:11:01 +0000'))
   end
 
-  it 'allows instances of a class to be created' do
-    expect(subject).to be_kind_of Account
-  end
-
   describe '#deposit' do
     it 'accepts the method with one argument' do
       expect(subject).to respond_to(:deposit).with(1).argument
