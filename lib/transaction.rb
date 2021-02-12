@@ -10,12 +10,8 @@ class Transaction
     @balance = balance
   end
 
-  # private
-  #
-  # def convert(value)
-  #   format('%.2f', value) if value.is_a? Integer
-  # end
-  #
+  private
+
   def today
     Time.now.strftime('%d/%m/%Y')
   end

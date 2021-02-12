@@ -5,7 +5,8 @@ require_relative 'transaction'
 class Account
   attr_reader :balance
 
-  def initialize(transaction_class = Transaction)
+  def initialize(transaction_class = Transaction, statement_class = Statement)
+    @statement_class = statement_class
     @transaction_class = transaction_class
     @transactions = []
     @balance = 0
@@ -23,12 +24,9 @@ class Account
     @balance
   end
 
-  # def statement
-  #   puts "date || credit || debit || balance\n"
-  #   @transactions.reverse_each do |transaction|
-  #     puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}\n"
-  #   end
-  # end
+  def statement
+    @statement_class.new(@transactions).print
+  end
 
   private
 
