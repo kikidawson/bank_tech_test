@@ -3,7 +3,7 @@
 class Statement
   def initialize(transactions)
     @transactions = transactions
-    @stringified_transactions = [ "date || credit || debit || balance" ]
+    @stringified_transactions = ['date || credit || debit || balance']
   end
 
   def print
@@ -32,5 +32,4 @@ class Statement
   def convert(value)
     format('%.2f', value) if value.is_a? Integer
   end
-
 end
