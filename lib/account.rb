@@ -26,7 +26,8 @@ class Account
   end
 
   def statement
-    @statement_class.new(@transactions).print
+    statement = @statement_class.new(@transactions)
+    statement.print
   end
 
   private
