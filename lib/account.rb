@@ -23,12 +23,12 @@ class Account
     @balance
   end
 
-  def statement
-    puts "date || credit || debit || balance\n"
-    @transactions.reverse_each do |transaction|
-      puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}\n"
-    end
-  end
+  # def statement
+  #   puts "date || credit || debit || balance\n"
+  #   @transactions.reverse_each do |transaction|
+  #     puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}\n"
+  #   end
+  # end
 
   private
 

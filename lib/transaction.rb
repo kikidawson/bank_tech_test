@@ -5,17 +5,17 @@ class Transaction
 
   def initialize(credit:, debit:, balance:, date: today)
     @date = date
-    @credit = convert(credit)
-    @debit = convert(debit)
-    @balance = convert(balance)
+    @credit = credit
+    @debit = debit
+    @balance = balance
   end
 
-  private
-
-  def convert(value)
-    format('%.2f', value) if value.is_a? Integer
-  end
-
+  # private
+  #
+  # def convert(value)
+  #   format('%.2f', value) if value.is_a? Integer
+  # end
+  #
   def today
     Time.now.strftime('%d/%m/%Y')
   end
