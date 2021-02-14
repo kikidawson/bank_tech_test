@@ -10,10 +10,6 @@ describe Account do
   end
 
   describe '#deposit' do
-    it 'accepts the method with one argument' do
-      expect(subject).to respond_to(:deposit).with(1).argument
-    end
-
     it 'adds deposited amount to balance' do
       subject.deposit(1000)
 
@@ -36,10 +32,6 @@ describe Account do
   end
 
   describe '#withdraw' do
-    it 'accepts the method with one argument' do
-      expect(subject).to respond_to(:withdraw).with(1).argument
-    end
-
     it 'minuses withdrawn amount from balance' do
       subject.withdraw(500)
 

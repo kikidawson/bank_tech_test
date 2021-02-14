@@ -100,3 +100,7 @@ date || credit || debit || balance
 | -------- | -------- |
 | Properties | date, credit, debit, new_balance |
 | Actions | |
+
+### Todos
+
+- feature test demonstrating that the acceptance criteria in the original instructions were met.
