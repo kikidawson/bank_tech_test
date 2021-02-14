@@ -35,6 +35,10 @@ describe Account do
 
       expect(subject.withdraw(500)).to eq(-1000)
     end
+
+    it 'raises error if negative amount' do
+      expect { subject.withdraw(-1000) }.to raise_error 'Amount must be above 0'
+    end
   end
 
   describe '#statement' do

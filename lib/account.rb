@@ -14,7 +14,7 @@ class Account
   end
 
   def deposit(amount)
-    raise 'Amount must be above 0' if amount <= 0
+    error_if_below_zero(amount)
 
     update_balance(amount)
     save_transaction(credit: amount)
@@ -22,6 +22,8 @@ class Account
   end
 
   def withdraw(amount)
+    error_if_below_zero(amount)
+
     update_balance(-amount)
     save_transaction(debit: amount)
     @balance
@@ -41,5 +43,13 @@ class Account
 
   def update_balance(amount)
     @balance += amount
+  end
+
+  def error_if_below_zero(amount)
+    raise 'Amount must be above 0' if above_zero?(amount)
+  end
+
+  def above_zero?(amount)
+    amount <= 0
   end
 end
