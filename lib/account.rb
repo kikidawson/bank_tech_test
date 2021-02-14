@@ -14,6 +14,8 @@ class Account
   end
 
   def deposit(amount)
+    raise 'Amount must be above 0' if amount <= 0
+
     update_balance(amount)
     save_transaction(credit: amount)
     @balance

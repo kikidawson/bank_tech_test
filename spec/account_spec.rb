@@ -4,7 +4,7 @@ require 'account'
 
 describe Account do
   subject { described_class.new }
-  
+
   describe '#deposit' do
     it 'adds deposited amount to balance' do
       subject.deposit(1000)
@@ -16,6 +16,10 @@ describe Account do
       subject.deposit(1000)
 
       expect(subject.deposit(1000)).to eq 2000
+    end
+
+    it 'raises error if negative amount' do
+      expect { subject.deposit(-1000) }.to raise_error 'Amount must be above 0'
     end
   end
 
@@ -34,7 +38,7 @@ describe Account do
   end
 
   describe '#statement' do
-    it 'prints ' do
+    it 'prints a statement with amounts deposited and withdrawn' do
       allow(Time).to receive(:now).and_return(DateTime.parse('2021-02-08 16:11:01 +0000'))
       subject.deposit(1000)
       subject.withdraw(500)
