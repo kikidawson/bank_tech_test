@@ -25,19 +25,27 @@ describe Account do
 
   describe '#withdraw' do
     it 'minuses withdrawn amount from balance' do
+      subject.deposit(500)
       subject.withdraw(500)
 
-      expect(subject.balance).to eq(-500)
+      expect(subject.balance).to eq 0
     end
 
     it 'returns the new balance' do
-      subject.withdraw(500)
+      subject.deposit(500)
+      subject.withdraw(200)
 
-      expect(subject.withdraw(500)).to eq(-1000)
+      expect(subject.withdraw(200)).to eq(100)
     end
 
     it 'raises error if negative amount' do
       expect { subject.withdraw(-1000) }.to raise_error 'Amount must be above 0'
+    end
+
+    it 'raises error if withdrawal will take balance below 0' do
+      subject.deposit(500)
+
+      expect { subject.withdraw(1000) }.to raise_error 'Insufficient funds'
     end
   end
 

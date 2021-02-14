@@ -23,6 +23,7 @@ class Account
 
   def withdraw(amount)
     error_if_below_zero(amount)
+    raise 'Insufficient funds' if amount > @balance
 
     update_balance(-amount)
     save_transaction(debit: amount)
