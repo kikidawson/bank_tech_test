@@ -104,3 +104,4 @@ date || credit || debit || balance
 ### Todos
 
 - feature test demonstrating that the acceptance criteria in the original instructions were met.
+- edge cases: what if balance goes past zero?, what if a user withdraws/deposits a negative amount?
