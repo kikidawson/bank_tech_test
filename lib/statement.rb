@@ -20,9 +20,7 @@ class Statement
   end
 
   def print_stringified_transactions
-    @stringified_transactions.each do |transaction|
-      puts transaction
-    end
+    puts @stringified_transactions
   end
 
   def stringify(transaction)
