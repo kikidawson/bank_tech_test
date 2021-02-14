@@ -60,15 +60,4 @@ describe Account do
       ).to_stdout
     end
   end
-
-  describe '#statement' do
-    it 'prints in reverse order' do
-      subject.deposit(1000)
-      subject.withdraw(500)
-
-      expect { subject.statement }.to output(
-        "date || credit || debit || balance\n08/02/2021 ||  || 500.00 || 500.00\n08/02/2021 || 1000.00 ||  || 1000.00\n"
-      ).to_stdout
-    end
-  end
 end
