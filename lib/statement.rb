@@ -24,10 +24,22 @@ class Statement
   end
 
   def stringify(transaction)
-    "#{transaction.date} || #{convert(transaction.credit)} || #{convert(transaction.debit)} || #{convert(transaction.balance)}"
+    "#{transaction.date} || #{converted_credit(transaction)} || #{converted_debit(transaction)} || #{converted_balance(transaction)}"
   end
 
   def convert(value)
     format('%.2f', value) if value.is_a? Integer
+  end
+
+  def converted_credit(transaction)
+    convert(transaction.credit)
+  end
+
+  def converted_debit(transaction)
+    convert(transaction.debit)
+  end
+
+  def converted_balance(transaction)
+    convert(transaction.balance)
   end
 end

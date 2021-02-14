@@ -4,10 +4,10 @@ require 'statement'
 
 describe Statement do
   subject { described_class.new(transactions) }
-  let(:deposit_1000) { double :transaction, date: '08/02/2021', credit: 1000, debit: nil, balance: 1000 }
-  let(:withdraw_500) { double :transaction, date: '09/02/2021', credit: nil, debit: 500, balance: 500 }
-  let(:deposit_2000) { double :transaction, date: '10/02/2021', credit: 2000, debit: nil, balance: 2500 }
-  let(:transactions) { [deposit_1000, withdraw_500, deposit_2000] }
+  let(:deposit1000) { double :transaction, date: '08/02/2021', credit: 1000, debit: nil, balance: 1000 }
+  let(:withdraw500) { double :transaction, date: '09/02/2021', credit: nil, debit: 500, balance: 500 }
+  let(:deposit2000) { double :transaction, date: '10/02/2021', credit: 2000, debit: nil, balance: 2500 }
+  let(:transactions) { [deposit1000, withdraw500, deposit2000] }
 
   it 'prints the statement in reverse chronological order' do
     expect { subject.print }.to output(
